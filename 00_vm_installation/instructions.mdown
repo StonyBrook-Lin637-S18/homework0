@@ -1,0 +1,296 @@
+Using the Virtual Machine Image
+===============================
+
+It is highly recommended that you use the provided virtual machine (VM) image for this class.
+The VM is already preconfigured with all the necessary software packages, saving you the hassle of setting up everything by yourself.
+In addition, homework instructions will assume you are using the VM since there are way too many systems on the market to cover in the instructions (multiple versions of Windows and OS X, various Linux and BSD distros, Chromebooks, and more).
+The rest of this document covers the installation and general usage of the VM.
+Specialized topics such as the Linux command line are covered in separate units.
+
+For those of you who already know how a VM works, you can immediately [download and import the ova file][vm].
+
+
+What is a VM?
+-------------
+
+### General description
+
+A virtual machine is, figuratively speaking, a computer in your computer.
+Virtualbox is a program that gets your computer to run a program that behaves like the hardware of a real computer.
+This virtual computer is called a *guest*, whereas your real computer is the *host*.
+You can start a guest like a real device and use it like a real computer: install an operating system on it, do some programming, run the web, whatever you want.
+The software running inside this virtualized computer has no idea that the "hardware" it is talking to is not real but just a piece of software running on the host, i.e. your computer.
+This is what makes VMs so great for learning: they allow you to practice in an environment that looks exactly like a real computer, but if something goes wrong you can close the guest like any other misbehaving program, with no harm done to your system.
+And if you somehow damage the guest, it only is a matter of minutes to reinstall it.
+So feel free to experiment - no matter how wrong this go and how much you break, none of the damage is permanent.
+
+### VM image for this class
+
+For this class, the VM image we use is based on Linux.
+*Linux* is an operating system, like Windows and OS X, but much more flexible and ideally suited for software development.
+Linux is [free and open source software](https://en.wikipedia.org/wiki/Free_and_open-source_software), which means that anybody is allowed to use it for free, look at the source code, modify it, and share it with others.
+As a result, there's hundreds of variants of Linux, which are known as *distributions*, or simply *distros*.
+Our VM uses the very popular distro [Debian](https://en.wikipedia.org/wiki/Debian).
+
+### Why a VM?
+
+When you run the virtual machine, it is like sitting in front of a real computer that runs the Linux-distro Debian, except that it is just a program running on your computer.
+This has several pedagogical advantages:
+
+- **Safety**  
+  Learning by trial and error is enormously effective when it comes to computers and programming, but it can also be dangerous when you do it on your own computer.
+  The VM provides an environment where you can experiment with no risk for your computer.
+  It also means that you won't have to clutter your computer with specialized software that might interfere with your computer setups.
+  For example, your computer might already have Python installed, in which case installing Anaconda on top of that may cause all kinds of issues.
+
+- **No setup**  
+  Installing and configuring software is a huge time sink, in particular if something doesn't work right away.
+  The VM already gives you everything you need for this class so that you can focus on learning rather than system configuration.
+
+- **Clear instructions**  
+  The VM provides many command line tools, i.e. software without a graphical user interface.
+  This may seem intimidating at first, but it actually makes many things easier because the homework instructions can provide exact commands that you only need to copy-paste.
+  That's much easier to work with than vague descriptions of the form "start this, click on that button, now you should see a menu, scroll halfway down, click OK".
+
+- **Learn Linux**  
+  Linux-skills are useful in research and industry alike.
+  In fact, knowing Linux is even a boon in your personal life as it will make it much easier for you to do cool things like rooting your smartphone, turning your router into a VPN server, boosting your internet speed with a proxy server, or running your own cloud at home so that you don't need to depend on the Google data kraken.
+  The VM will give you some exposure to Linux, which will make it much easier to learn more about Linux on your own.
+
+A brief, more personal remark on why Linux skills are important in this day and age:
+Software is increasingly becoming like a daycare center where users are treated like children, stripped of rights and choices, in the name of security and convenience.
+Users are restricted to digital gated communities where they can only use software that has been pre-approved by gate keepers like Google and Apple, who lock out any software that interferes with their business model.
+For the user is no longer the customer, he or she is a product whose data is to be mined and monetized incessantly.
+This is a very worrying trend that contradicts the most fundamental principle of enlightenment, the foundation of our modern western world: "man's emergence from his self-imposed immaturity".
+At this point, Linux and open-source software is the only alternative to this digital daycare.
+So I hope the VM will act as gentle push for you to get out of the daycare and take charge of your digital life.
+
+
+Installation
+------------
+
+### Windows and OS X
+
+1. Download the correct version of [Virtualbox](https://www.virtualbox.org/wiki/Downloads) for your system, and install it.
+1. Download the [virtual machine image][vm] as an `ova`-file from the Google drive.
+   The file is almost 4GB, so it will take a while.
+   Make sure your download does not get interrupted, as this might damage the file.
+1. Start Virtualbox. 
+   Click on `File` in the menu bar, then select `Import Appliance`.
+   Select the ova file you downloaded (you might have to navigate to the folder first where you saved the `ova` file).
+1. Virtualbox will start importing the image.
+   If you get an error message, the `ova` file is corrupted and must be downloaded again.
+1. After the virtual machine image has been imported, select it and click the `Start` button, which is the big green arrow.
+1. A window will open loading the fully-configured Linux installation.
+1. If everything works correctly, you can delete the `ova` file now.
+
+Here are some screencasts illustrating the process for OS X.
+It is almost exactly the same for Windows and other operating systems.
+
+- [Downloading Virtualbox](./VB_download_screencast.mp4)
+- [Installing Virtualbox](./VB_install_screencast.mp4)
+- [Importing and launching the VM](./VB_import_screencast.mp4)
+
+### Linux
+
+Install Virtualbox directly from your distro's software repositories.
+Alternatively, you can add the official Virtualbox repository.
+[Detailed instructions](https://www.virtualbox.org/wiki/Linux_Downloads) are available on the Virtualbox website.
+
+
+Working in the VM
+-----------------
+
+### GUI software
+
+The VM has a very conventional graphical user interface (GUI) with a desktop, start menu, file browser,and so on.
+All code can be written in *Geany*, a light-weight but full-featured text editor with syntax highlighting, shortcuts for running your program, and much more.
+Here is a brief overview of some of the available GUI programs:
+
+Program name | What does it do ?
+:--          | :--
+diffpdf      | compare two pdfs for differences; useful for finding typos in publisher proofs of your own paper
+Diffuse      | display the differences between two text files
+Galculator   | simple calculator
+Geany        | powerful text editor
+gitk         | revision tree visualizer for git
+IDLE3        | Python [REPL](repl)
+Jabref       | Bibliography manger for bibtex 
+Jupyter Qt Console | More powerful Python [REPL](repl)
+Leafpad      | very simple text editor, like Notepad on Windows
+Libre Office | office suite, including alternatives for Word, Excel, and Powerpoint
+LXMusic      | music player
+LXTerminal   | Linux terminal, used for running commands
+Midori       | light-weight web browser
+mpv          | video player
+OpenSesame   | design psycholinguistic experiments
+PCManFM      | file manager
+Praat        | phonetic analysis
+Psychopy     | design psycholinguistic experiments
+qpdfview     | PDF viewer
+QTikZ        | GUI-helper for creating TikZ figures in LaTeX
+TeXstudio    | LaTeX editor
+Xarchiver    | unpack compressed file containers like zip and rar
+
+### Command line programs
+
+Many of the tools you will have to use for this class do not have a GUI in the classic sense.
+Some only have a *command line interface* (CLI), and some have *ncurses*-based GUI that looks like something from the 80s.
+In order to run these programs, you need to open a terminal first.
+An icon for the terminal is on the desktop.
+See the separate unit for how to use the command line.
+The VM contains tons of terminal programs. 
+
+Here is a selection of tools you might use at some point during the course.
+
+Program name | What does it do ?
+:--          | :--
+atool        | unpack compressed file containers like zip and rar
+bpython3     | Python [REPL](repl)
+foma         | construct finite-state automata and transducers
+git          | version control system
+git-hub      | interact with Github
+hfst         | construct finite-state automata and transducers
+mypy         | type-check your Python code
+pandoc       | universal document converter
+pelican      | static website generator
+py-test3     | unit test your Python code
+tig          | ncurses interface to git
+wget         | file downloader
+
+And here are some other tools that come in handy in daily life (or at least the daily life of a computational linguist).
+
+Program name | What does it do ?
+:--          | :--
+bibtool      | batch process and modify bibtex files
+cmus         | music player
+graphviz     | automatic generator for graph drawings
+htop         | task manager
+jed          | text editor
+latexmk      | batch process latex files
+lftp         | ftp client
+link-grammar | parser for Link Grammar formalism
+mona         | automata-based model checker for monadic second-order logic
+multitail    | log file viewer
+mutt         | email client
+myrepos      | git repository manager
+ncdu         | disk usage viewer
+nano         | very simple text editor
+pdftk        | process and modify pdf files
+prover9      | theorem prover and countermodel generator
+ranger       | curses-based file manager
+rsync        | file synchronization tool
+scrot        | screenshot utility
+sshfs        | mount remote folders via SSH
+tmux         | terminal multiplexer
+
+### Programming languages
+
+The VM is mostly designed around programming in Python 3, but interpreters/compilers for several other programming languages are also available:
+
+- Awk
+- C
+- C++
+- Clojure
+- Java
+- Lua
+- Prolog
+- OCaml
+- Ruby
+
+Haskell is available only in certain versions of the VM because of its large hard drive footprint.
+Unless the course involves programming in Haskell, Haskell is probably not installed.
+
+### Installing Software
+
+Additional software, such as Python packages, are installed from the command line.
+First we have to make sure we have the most current list of available software.
+Open a terminal, and run
+
+```bash
+sudo aptitude update
+```
+
+1. `sudo` means to execute the next command with administrator privileges.
+1. `aptitude` is the package manager that handles software installations.
+1. `update` tells aptitude to get the newest software list.
+
+Whenever you run a command with `sudo`, you'll be asked for the password.
+For the VM, the password is *student*, which is also the username.
+So enter `student` when asked for the password (no stars will be displayed when you enter `student`, just type the word and hit enter).
+
+After that, we can install any software with
+
+```bash
+sudo aptitude install <PackageName>
+```
+
+Here `sudo` and `aptitude` have the same meaning as before.
+
+1. `install` tells *aptitude* that we want to install a package.
+1. `<PackageName>` is the name of the package.
+
+You have to replace `<PackageName>` by the name of the package(s) you want to install.
+For example, to install the download manager aria2 and the ESR version of the web browser Firefox, run the following:
+
+```bash
+sudo aptitude install aria2 firefox-esr
+```
+
+To find the correct package name, use `aptitude search string`, e.g. `aptitude search sympy`.
+Since this doesn't make any changes to the system, the command can be run without `sudo`.
+
+
+Using and tweaking virtualbox
+-----------------------------
+
+Virtualbox is a powerful program that can be tweaked in all sorts of ways.
+
+### Guest additions
+
+Virtualbox also offers guest additions to make the VM integrate more tightly with your system.
+For example, this allows creating shared folders to share files between the VM and your own system, and to dynamically scale the resolution of the VM depending on the window size.
+
+Guest additions are not installed by default due to licensing restrictions.
+You'll have to install them yourself if you want the additional features.
+
+1.  Start the VM.
+1.  At the top of the VM window, there is a menu bar.
+    Click on `Devices`, then select `Insert Guest Additions CD image`.
+1.  When asked whether you can to open the CD in the file browser, click cancel.
+    Instead open the terminal, then issue the following commands one after the other:
+    1. `cd /media/cdrom` to go to the cdrom folder, which is where the guest additions CD has been mounted.
+    1. `sudo su` will promote you to administrator.
+       As usual for `sudo`, you will be asked for the password.
+       It is *student*.
+    1. Then type `sh VBoxLinuxAdditions.run`.
+    1. Once the installation is done, reboot the VM.
+1.  To make sure that everything is installed correctly, open a terminal and run `lsmod | grep vboxguest`.
+    If you see a line mentioning `vboxguest`, everything worked as intended.
+    If there is no output at all, something went wrong.
+    Please contact the instructor.
+
+### Settings
+
+You can change the virtual hardware of the VM to make it work better on your computer.
+Select the VM you want to modify and click on `Settings` in the toolbar (or alternatively, `Machine/Settings` in the menu bar).
+Here's some settings you might want to tweak:
+
+How to get there | Setting | What it does
+:--              | :--     | :--
+General/Advanced | Shared Clipboard: Bidirectional | allows you to copy-paste text between your own computer and the VM; might not work on all systems
+System/Motherboard | Bsae Memory | increase it to allow the VM to use more of your computers memory; if unsure, leave as is
+System/Processor | Processor(s) | how many cores of your CPU the VM may use; if unsure, leave as is
+Shared Folders | the folder-plus icon | gives the VM access to a folder on your VM so that you can share files between them
+
+### Window size
+
+Virtualbox has a *host key* that can be used for certain shortcuts.
+By default, this is the right Control (Ctrl) key on Windows.
+On OS X, it is the left command key.
+You can switch the VM between window-mode and fullscreen with the hotkey combination HostKey + F (pressing the host key and F at the same time).
+In fullscreen mode, the VM will feel exactly like sitting in front of a computer running Linux.
+
+
+[repl]: https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop
+[vm]: https://drive.google.com/file/d/1ti5dhXh1ZzHKYa-dCHZtzI7WIapWPr2V/view?usp=sharing
