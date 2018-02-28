@@ -87,9 +87,9 @@ Installation
 Here are some screencasts illustrating the process for OS X.
 It is almost exactly the same for Windows and other operating systems.
 
-- [Downloading Virtualbox](./VB_download_screencast.mp4)
-- [Installing Virtualbox](./VB_install_screencast.mp4)
-- [Importing and launching the VM](./VB_import_screencast.mp4)
+- [Downloading Virtualbox](./VB_download_screencast.mp4?raw=True)
+- [Installing Virtualbox](./VB_install_screencast.mp4?raw=True)
+- [Importing and launching the VM](./VB_import_screencast.mp4?raw=True)
 
 ### Linux
 
