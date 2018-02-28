@@ -279,7 +279,7 @@ Here's some settings you might want to tweak:
 How to get there | Setting | What it does
 :--              | :--     | :--
 General/Advanced | Shared Clipboard: Bidirectional | allows you to copy-paste text between your own computer and the VM; might not work on all systems
-System/Motherboard | Bsae Memory | increase it to allow the VM to use more of your computers memory; if unsure, leave as is
+System/Motherboard | Base Memory | increase it to allow the VM to use more of your computers memory; if unsure, leave as is
 System/Processor | Processor(s) | how many cores of your CPU the VM may use; if unsure, leave as is
 Shared Folders | the folder-plus icon | gives the VM access to a folder on your VM so that you can share files between them
 
