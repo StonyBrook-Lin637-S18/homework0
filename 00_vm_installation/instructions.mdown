@@ -201,7 +201,7 @@ The VM is mostly designed around programming in Python 3, but interpreters/compi
 Haskell is available only in certain versions of the VM because of its large hard drive footprint.
 Unless the course involves programming in Haskell, Haskell is probably not installed.
 
-### Installing Software
+### Installing software
 
 Additional software, such as Python packages, are installed from the command line.
 First we have to make sure we have the most current list of available software.
