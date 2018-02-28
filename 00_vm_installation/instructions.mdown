@@ -146,7 +146,7 @@ Here is a selection of tools you might use at some point during the course.
 Program name | What does it do ?
 :--          | :--
 atool        | unpack compressed file containers like zip and rar
-bpython3     | Python [REPL](repl)
+bpython3     | Python [REPL](repl) with excellent command completion
 foma         | construct finite-state automata and transducers
 git          | version control system
 git-hub      | interact with Github
@@ -248,7 +248,7 @@ Virtualbox is a powerful program that can be tweaked in all sorts of ways.
 
 ### Guest additions
 
-Virtualbox also offers guest additions to make the VM integrate more tightly with your system.
+Virtualbox offers guest additions to make the VM integrate more tightly with your system.
 For example, this allows creating shared folders to share files between the VM and your own system, and to dynamically scale the resolution of the VM depending on the window size.
 
 Guest additions are not installed by default due to licensing restrictions.
