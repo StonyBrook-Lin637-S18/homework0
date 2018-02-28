@@ -241,7 +241,7 @@ To find the correct package name, use `aptitude search string`, e.g. `aptitude s
 Since this doesn't make any changes to the system, the command can be run without `sudo`.
 
 
-Using and tweaking virtualbox
+Using and tweaking Virtualbox
 -----------------------------
 
 Virtualbox is a powerful program that can be tweaked in all sorts of ways.
