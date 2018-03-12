@@ -1,0 +1,93 @@
+Introduction
+============
+
+What is git?
+------------
+
+Git is a version control system (vcs).
+This means that git keeps track of how files are changed over time and allows you to easily restore any previous version of a file.
+You can also have multiple versions at a time, sync file across computers, and even edit them collaboratively with other people.
+Basically, git is a word processor's undo functionality on steroids.
+
+
+Why should I use it?
+--------------------
+
+You may already have an existing workflow using Word's revision system or Google docs for collaborative writing.
+Why, then, should you switch?
+
+1. *Die normative Kraft des Faktischen* ('the normative force of facts')  
+   Git is used in a lot of our graduate level courses, and it is a standard tool in software development.
+   If you have to deal with it anyways, you might just as well do it well.
+
+1. *Universality*  
+   Word's revision system only works with Word files, and you have to have access to MS Word, which pretty much limits you to Windows and OS X.
+   Google docs is available on every OS that has a modern browser, but again you are limited to a specific tool.
+   In both cases you also have vendor lock-in: if Microsoft or Google stop supporting the product, you can kiss your version control system good-bye.
+
+   Git has a very different approach: it is open-source and thus available for free on a large number of platforms.
+   It has an enormous community, which ensures that it will be supported for decades to come.
+   Git is not tied to a particular service infrastructure --- you can just use it locally without an internet connection, add an online service like GitHub or gitlab for distribution and backup purposes, or set up your own git server in a few minutes.
+   Although it is designed with plain text files in mind, it works with all files (even binaries).
+   Git works at the level of file systems rather than individual files so that you can keep track of the revision history of entire folders rather than just invidiual files.
+   This is essential for any kind of project that involves more than one file, which includes writing research papers in LaTeX and all decently sized coding projects.
+   Finally, git has excellent support for automatically merging multiple versions of a file into one that incorporates all changes, which is essential for collaborative writing.
+
+
+Why should I not use it?
+------------------------
+
+Git is very powerful, and with great power comes great responsibility.
+If you do not like tools that cannot be picked up intuitively in five minutes, and you are horrified by the thought that even after five years of extensive usage there will be certain git features you weren't aware of, look somewhere else.
+But frankly, this is not a healthy attitude for academics, in particular not for those working in a computational field.
+In the long run, it is always smarter to invest the time to master a powerful tool that makes your life easier rather than muddling through with subpar tools that constantly require manual work on your part.
+
+
+Software Setup
+--------------
+
+For this tutorial, I assume that you have the following tools installed: git and gitk (or alternatively tig).
+Under Linux, you can use your package manager.
+For Debian and its derivatives like Ubuntu and Mint the command is
+
+~~~bash
+sudo aptitude install git gitk tig
+~~~
+
+or 
+
+~~~bash
+sudo apt-get install git gitk tig
+~~~
+
+For other OSs, you can either google setup instructions or use the virtual machine of the Computational Linguistics Lab, which already comes with all required tools pre-configured:
+
+1.  Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+1.  Download the [virtual machine image][vm] and import it into VirtualBox.
+
+
+Why Command-Line Tools
+----------------------
+
+There are many GUI tools for git, but we will mostly use the command line.
+This has several advantages:
+
+1.  Few GUI tools are available on all three major platforms (Windows, OS X, Linux).
+    The command line version of git is available virtually everywhere (including BSD, Android, and iOS).
+
+1.  Every GUI tool does things slightly differently.
+    The command line is the same everywhere.
+
+1.  Related to the previous point, the command line has a stable user interface.
+    Sometimes features get added, but existing commands stay the same.
+    GUIs, on the other hand, change with each iteration, moving things around and greatly altering the workflow in a futile attempt to maximize user-friendliness.
+
+1.  GUI tools try to streamline working with git but actually end up muddling the core concepts behind git.
+
+1.  If you know how to use the command line, you won't struggle with any GUI tool.
+    The opposite does not hold.
+
+1.  The command line tool is directly accessible from good text editors like vim and emacs.
+    GUI tools are monolithic blocks that do not integrate with anything else.
+
+1.  If you are in a text-only environment, for instance a remote server you are connected to via ssh, the command line is all you have.

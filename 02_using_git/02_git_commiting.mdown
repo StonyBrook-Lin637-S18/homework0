@@ -1,0 +1,191 @@
+Git Basics
+==========
+
+## Initializing a Git Repository
+
+Git's workflow revolves around repositories.
+A repository is just a folder that also contains some hidden files and folders created by git.
+So any arbitrary folder can be turned into a git repository.
+
+Suppose you want to turn the folder `foo` in your home repository into a git repository.
+This is very easy to do:
+
+1.  Open a terminal.
+1.  Enter `cd ~/foo` to change the current directory to `foo`.
+1.  Run `git init`.
+
+You now have a fully functional git repository.
+
+
+## Cloning a Git Repository
+
+One of git's main advantages is that it allows you to reuse repositories created by other people.
+This is called *cloning*.
+When you clone a repository, you create an identical copy of that repository on your computer, and you can work with that repository as if you had created it yourself.
+
+Let us try to clone this very repository to your own computer so that you can add and delete files or edit existing ones.
+
+1.  In the top-right corner of the website, you can see a green button that says *Clone or download*.
+    Clicking on it reveals a URL.
+    Copy this URL.
+
+1.  Open a terminal and use the `cd` command to navigate to the folder that should contain the cloned repository.
+    **Caution:** this folder should not be a git repository.
+    Bad things can happen when git repositories are contained inside other git repositories.
+
+    We will use the `mkdir` command to create a folder `training` in the home directory.
+    Then `git clone` clones the repository into that folder. 
+    You do not have to type the URL, just push Shift and the Insert key.
+
+    ~~~bash
+    mkdir ~/training
+    cd ~/training
+    git clone https://github.com/CompLab-StonyBrook/git_training.git
+    ~~~
+
+1.  You now have a folder `git_training` inside your training folder.
+    If you don't like that name, you can rename the folder.
+    You can also move it somewhere else.
+
+    ~~~bash
+    mv git_training my_git_playground
+    ~~~
+
+    Quite generally, you can treat the repository like any other folder and it will still work fine.
+    A folder that is a git repository is no different from any other folder as far as your OS is concerned.
+
+
+## Basic Git Workflow
+
+You now have a working git repository on your computer. 
+It does not matter whether you created it yourself from scratch with `git init` or cloned an existing one with `git clone`, how a repository is created does not affect its functionality.
+For the rest of the tutorial I assume that you are working with a clone of this repository because this makes it easy to discuss specific examples.
+Right now, the repository isn't all that interesting as it only contains this very tutorial and a pretty dull `LICENSE` file.
+Let us do some actual work then.
+
+First, it will be helpful for you to have a text file `notes` for taking notes while you work through the tutorial.
+You can create this text file any way you want, the only thing that matters is that you save it in the repository.
+In the virtual machine, you can use *nano* or *leafpad*.
+Do not use a word processor like Word or LibreOffice, that only increases the likelihood that you accidentally create a doc-file.
+We want a plain text file at this point.
+
+You can also be extra-nerdy and create the text file directly on the command line:
+
+~~~bash
+cd ~/training/my_git_playground
+echo '# My notes file' > notes
+~~~
+
+So now your folder contains a new file `notes`.
+But even though the file is in your repository, it is currently not under git's version control.
+You can verify this with git's status command:
+
+~~~bash
+git status
+~~~
+
+Git will give you quite a bit of information, most of which isn't relevant for us right now.
+Find the line that says *Untracked files:*, and look at the list below that.
+You will see your `notes` file listed there.
+This means that git is aware that the file exists, but has not put it under version control because we did not tell it to.
+In order to do so, we must use git's `add` command.
+
+~~~bash
+git add notes
+~~~
+
+If you run `git status` again, you will now see `notes` under the heading *Changes to be committed*.
+
+Why didn't git add the file automatically? 
+Because a repository may contain files we do not want to put under version control.
+For example, when you compile a LaTeX file the folder will be cluttered with files ending in `.aux`, `.log`, `.blg` and many others.
+Since those files are created automatically from your `.tex` file, there is no reason to put them under version control.
+
+But there's another reason not to add files automatically, which brings us to the next important concept: *commits*.
+Git has a three stage concept for keeping track of revisions.
+A file starts out *unstaged*, which means that we currently do not record any changes to the file.
+By using `git add` we tell git to *stage* a file.
+Staging means that git records all changes that have been made to the file since the last entry in the revision history (if the file is completely new, the entire file is one big change).
+The final step is the *commit*, which creates a new entry in the revision history that records the status of all staged files.
+Commits are the backbone of git's revision history.
+A revision history in git is just a large graph whose nodes are commits, and each commit records the state of all staged files at this point.
+
+To summarize, the three states of a file are as follows:
+
+1. *unstaged*: the file has been changed, but we haven't yet used the `git add` command to include it in the next step of the revision history
+1. *staged*: the file is now marked as part of the next revision snapshot, but until we run `git commit` this snapshot has not been created yet
+1. *committed*: we have run `git commit` and the file has been added to the revision history as part of this commit
+
+In our running example, we have used `git add notes` to stage the notes file.
+But we haven't commited it yet.
+That's why `git status` lists `notes` under the heading *Changes to be comitted*.
+Type `git commit`.
+This will open a text editor where you are asked to enter a description of this commit.
+Since we are only adding the first version of `notes`, we enter *initial commit* and close the text editor.
+Alternatively, we could have also typed `git commit -m 'initial commit'` directly in the terminal.
+Either way we now have a commit in our revision history.
+Run `git status` again and git will tell you *nothing to commit, working directory clean*.
+This means that you haven't made any changes since the most recent commit.
+
+You can run `gitk` to see a graphical depiction of the revision history.
+At this point, the graph contains only node, with the message *initial commit* that we added to the commit earlier on.
+
+And this is all you need to get started with git.
+Here's the basic workflow again:
+
+1. Create and edit files as you see fit.
+1. Run `git status` to get an overview of what has changed since the last commit.
+1. Use `git add` to stage files.
+1. Use `git commit` or `git commit -m <some text>` to commit the staged files.
+
+*Tip*: If you want to stage all changed files in the repository, you can type `git add .` as a shorthand.
+The `.` is a common convention for including all possible matches.
+
+*Further reading:* In complex projects with multiple contributors, it will be important that you write good commit messages.
+See [this blog post](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message) for details.
+
+
+## Ignoring Certain Files
+
+The `git add .` command provides an easy means of staging all changed files.
+But sometimes you do not want to add all files.
+LaTeX, for instance, produces many temporary files that would only end up cluttering your revision history.
+We can instruct git to ignore certain files by adding a hidden file `.gitignore` to the repository.
+Any file listed in there will be ignored.
+You can write shorthands like `*.aux` to ignore all aux files.
+Here is a reasonable list for LaTeX projects.
+This file instructs git to ignore everything except files that end in a few tex-related extensions as well as anything contained in the subfolders `tex`, `bib`, `img`, `code`, and `pdf`.
+
+~~~
+*
+!.gitignore
+!*.bib
+!*.bst
+!*.clo
+!*.cls
+!*.dot
+!*.forest
+!*.latexmain
+!*.py
+!*.sty
+!*.tex
+!*.tikz
+!tex/
+!bib/
+!bib/**/
+!img/
+!img/**/
+!code/
+!code/**/
+!pdf/
+!pdf/*.pdf
+~~~
+
+For a Python project, the following `.gitignore` is useful:
+
+```
+*.pyc
+__pycache__
+```
+
+This file allows everything to be added except Python cache files and anything inside the folder `__pycache__`.

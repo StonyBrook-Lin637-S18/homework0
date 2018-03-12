@@ -1,0 +1,156 @@
+Basic Commands
+==============
+
+While there are hundreds of thousands of command line programs, 90% of your daily command line activities will only use a handful of commands.
+These are covered below.
+
+
+Learning more
+-------------
+
+### `apropos [search terms]`  
+
+The `apropos` command shows all commands whose description contains at least one of the search terms.
+Use it to discover the name of commands for a specific task.
+
+
+### `man [command name]`
+
+Shows the manual (or *man page*) for `[command name]`.
+You can scroll up and down with the cursor keys, and quit with `q`.
+For example, try `man apropos` to learn more about the apropos command, or `man man` to see the man page for the man command.
+
+A good man page usually consists of
+
+1. a *synopsis* of all options and command line parameters, and
+1. a detailed *description*, and
+1. some concrete examples.
+
+
+Working with files
+------------------
+
+### `ls`
+
+The standard utility for displaying the contents of a folder.
+In contrast to `dir` and `vdir`, `ls` colorizes the output to make it easier to distinguish files, folders, and shortcuts, among others.
+There are a variety of parameters, but the most important ones are
+
+- `-a`: show all files, including hidden ones
+- `-l`: use a list format
+- `-R`: recursively show all contents; this also prints the contents of subfolders, the subfolders of these subfolders, and so on
+
+As usual, you can combine the parameters, e.g. `-al` or `-laR`.
+
+
+### `cd [path]`
+
+The `cd` command is used for changing directories, i.e. moving from one folder into another.
+For example, when opening a terminal you can type `cd Documents/vm_manual` to change to the folder `vm_manual` inside `Documents`.
+
+Alternatively, you could also type `cd ~/Documents/vm_manual`.
+This is an *absolute path*, as it basically says "Go to the user's home directory, then `Documents`, then `vm_manual`".
+The path `Documents/vm_manual`, on the other hand, is a *relative path*.
+It amounts to saying "In this directory, go into `Documents`, then `vm_manual`.
+The difference between absolute and relative paths is very important.
+For instance, if you are already in `vm_manual`, the command `cd ~/Desktop` will successfully move you into the `Desktop` folder of the users' home directory.
+But `cd Desktop` will produce the error message `No such file or directory` because `vm_manual` does not contain a folder called *Desktop*.
+
+In order to move up a level from your current position, you can insert `..` in the path.
+So if you are still in `vm_manual`, `cd ..` would move you one level up into `Documents`, and `cd ../..` would even move you back into the home directory.
+Consequently, you can also go from `vm_manual` to `Desktop` by running `cd ../../Desktop`.
+
+
+### `mv [sources] [target]`
+
+Move files or folders from the source to the target.
+For example, `mv *.tex ~/backup` would move all tex files from the current directory into the folder backup in the user's home directory.
+Note that the folder must already exist.
+
+You may be surprised that the `mv` command is also used to rename files and folders.
+If you want to rename your 
+
+There are several useful parameters:
+
+- `-v`: the verbose mode shows which file is currently being moved; this is useful to estimate the progress of large transfers.
+
+- `-n`: by default `mv` operates in *move and replace* mode, which means that files at the target destination will be overwritten; in *no clobber* mode, source files are not moved if they would overwrite a file at the target
+
+- `-u`: in *update mode*, `mv` only overwrites the target files if the source files are newer
+
+- `-i`: *interactive mode*, `mv` asks how to proceed for each file that would be overwritten
+
+
+### `cp [source] [target]`
+
+This works almost the same as `mv`, except that it copies files and folders instead of moving them.
+Like `mv`, it also overwrites existing files by default, but you can use `-n` and `-i` to change that behavior.
+
+In contrast to `mv`, `cp` only copies files by default while skipping folders.
+In order to copy folders and all their contents, add the parameter `-R` (which as for `ls` is short for *recursive*).
+
+The parameters for `mv` listed above also work with `cp`.
+
+
+### `mkdir [directory_names]`
+
+Make one or more new directories.
+For example, `mkdir tests` creates a new folder `tests` inside the current folder, and `mdkir ~/tests` creates a new folder `tests` inside the user's home directory.
+
+Note that you cannot simply run something like `mkdir ~/tests/test1` unless `tests` already exists.
+But you can fix that by adding the parameter `-p`, which causes `mkdir` to create any folder in the path that does not already exist.
+So `mkdir -p ~/tests/test1` will succeed no matter whether `tests` exists in the home directory.
+
+
+### `rm [path]`
+
+Remove the file found at the given path.
+The command `rm tests/test.txt` would remove the file `test.txt` inside the folder `tests`.
+
+**Caution**: `rm` fully deletes a file rather than moving it some kind of recycle bin.
+A file that has been deleted with `rm` is gone for good and can only be restored with specialized software and a good deal of luck.
+
+- `-v`: verbose mode shows which file/folder is currently being removed
+- `-R`: by default, `rm` does not remove any folders; activate recursive mode to delete a folder and everything it contains
+- `-i`: interactive mode prompts the user for each file that is to be deleted; this is a wise choice when operating with sensitive files for which there is no backup
+
+
+Search
+------
+
+### `locate [patterns]`
+
+Show all files on the computer whose path fits a certain pattern.
+For example `locate ome/student/Desk` will show all files whose path contains this string of characters.
+In the VM, those are just a few files inside the Desktop folder of the user *student*.
+
+You can also specify multiple patterns, e.g. `locate ome/student/Desk *.zip` will show every file that satisfies at least one of those two patterns.
+In other words, it combines the outputs of `locate ome/student/Desk` and `locate *.zip`.
+
+- `-A`: only show files that match all of the provided patterns
+- `-b`: only consider the name of the file, not its full path
+- `-i`: make the search case-insensitive
+
+
+### `grep [pattern]`
+
+The `grep` tool searches through a file or the output of some other command and prints only those lines that match the provided pattern.
+The pattern can be any extended regular expression, which makes `grep` enormously powerful.
+
+For a simple introduction to regular expressions, see [this tutorial](https://ryanstutorials.net/linuxtutorial/grep.php).
+
+Some of the most important parameters:
+
+- `-A n`: also show the next n lines after each matched line
+- `-B n`: also show the previous n lines before each matched line
+- `-C n`: show the *n line context* of each match; this is equivalent to `-A n -B n`
+- `-i`: ignore case distinctions
+- `-v`: *invert* the pattern so that lines are shown only if they do **not** match the pattern
+
+### `updatedb`
+
+In order for `locate` to work reliably, it needs an up-to-date database.
+If you cannot find a file with `locate` that you know for sure exists, use `updatedb` to update its database.
+Usually only administrators are allowed to do this, so you will most likely have to run `sudo updatedb` rather than just `updatedb`.
+
+

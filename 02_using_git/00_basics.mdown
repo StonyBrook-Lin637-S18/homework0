@@ -1,0 +1,35 @@
+# Git: The Very Basics
+
+This is a barebones introduction to the version control system `git`.
+It teaches you just enough to successfully do the homeworks for this course.
+It is assumed that you are using the virtual machine image and are already familiar with the very basics of the command line (`cd`, `mkdir`, and so on).
+
+## Git in 5 Minutes
+
+1. Open the Terminal.
+   The icon is on the desktop.
+1. If it doesn't exist yet, create a folder `homeworks` in the home directory with `mkdir homeworks`.
+1. Execute `cd homeworks` to move into the homeworks folder.
+1. To clone a git repository `example-repo` at URL `xyz`, run `git clone xyz`.
+   Never clone a repository into an existing repository (that's why we created a separate folder `homeworks` in the home directory).
+1. With `ls`, you should now see a new folder `example-repo`.
+1. Edit the contents of the folder to your liking.
+1. Once you are done, run `git add .` to *stage* all changed files.
+1. Then run `git commit -m "put some message here"` to *commit* all changed files.
+1. Finally, push the commit to the repository you cloned from with `git push origin master`.
+
+
+## Github in 5 Minutes
+
+You can only push commits to a repository that you are allowed to write to.
+On Github, this is only the case for repositories that you have created yourself or that somebody has made given you write access to.
+You do **not** have write access to the homework repositories, so you cannot push your commits there.
+Instead, you have to
+
+1. create a fork of the repository for the homework you want to do
+1. clone the fork with `git clone`,
+1. make changes as before and commit them,
+1. push your changes to the fork with `git push origin master`, and
+1. file a pull request against the original repository.
+
+Each homework repository explains this process in detail and links to the relevant passages of Github's help section.

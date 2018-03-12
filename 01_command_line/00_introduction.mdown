@@ -1,0 +1,187 @@
+Command Line Basics
+===================
+
+What is a command line interface?
+---------------------------------
+
+Most users are only familiar with graphical user interfaces (GUIs), which have buttons, menus, scrollbars, and are easily used with a mouse.
+The command line provides an alternative, text-based user interface.
+There is nothing to click or select, instead users have to type commands.
+This makes the command line much more powerful and flexible, but it also comes with an initially steeper learning curve.
+
+To see what the command line looks like in our VM, click on the Terminal icon on the desktop.
+You will see a window that says `student@CompLingVM:~$`, like in the screenshot below.
+
+![Terminal in the VM](./terminal.png)
+
+But now what?
+When you type something, it will show up in the terminal, and you can hit Enter to tell the terminal to execute what you typed.
+However, without any previous knowledge you probably have no idea what to type.
+
+![Only specific commands be run](./nowwhat.png)
+
+In the picture above, we typed something that is not a known command.
+The VM is already set up to be more beginner friendly by suggesting commands that resemble what you typed, but it does not tell you what those commands do, either.
+
+This is why the command line can be intimidating to new users - it lacks *discoverability*.
+In a GUI, you can learn by trial and error by clicking on random buttons to see what happens.
+There's only so many buttons to try, so eventually something is bound to happen.
+The command line allows you to type whatever you want, so it is much less likely that you will discover the important commands by accident.
+The command line interface is much harder to master without an explicit tutorial. 
+But with a tutorial like this one, it is actually fairly easy and really pays off in the long run.
+
+
+Why the command line?
+---------------------
+
+### Scalability through compositionality
+
+The command line is one of those tools that require a longer learning period to master but are much more convenient in the long run.
+Since it is text-based, it is very easy to combine simple commands into very powerful instructions.
+It works very much like natural language, which allows us to break down very complex statements into simple combinations of words and phrases.
+Once you have mastered the grammar of the command line and its base vocabulary, you have an incredibly flexible tool at your hand.
+
+Here is a simple example.
+Suppose you have written a paper in Latex, with each section as its own tex file.
+But the publisher only accepts submissions with at most 15,000 words, so now you need to check that you stayed under the word limit.
+You could open each file in your Latex editor, check the word count, and add up all the numbers, but that's cumbersome and error prone.
+The command line can do it for you in a few seconds.
+
+```bash
+cat *.tex > tmp.tex && texcount tmp.tex && rm tmp.tex
+```
+
+This concatenates all tex files into a single file `tmp.tex`, uses the program `texcount` to get a word count, and deletes `tmp.tex` afterwards as it's no longer needed.
+This examples makes use of three core techniques:
+
+1. *globbing*: operate on all files that match a specific filename pattern; in this case, `*.tex` matches all tex files in the folder
+1. *output redirection*: instead of showing the output in the terminal, redirect it somewhere else; in the example, we use `> tmp.tex` to write the output of `cat` to the file `tmp.tex`
+1. *coordination*: run multiple commands in sequence with `&&`
+
+This is just the tip of the iceberg.
+The command line also allows you to reuse the output of one command as the input for another (*piping*), use loops with *for* and *while*, *if* statements, and much more.
+It essentially provides you with an environment where you can write small programs on the fly to greatly simplify your workflow.
+A GUI cannot be programmed in this way, making it much less scalable.
+
+### Uniformity and stability
+
+Graphical user interfaces can differ greatly across programs, and even within a single program they rarely stay the same.
+For example, Microsoft Office 2007 radically changed its user interface with the introduction of the ribbon, which required user's to spend a lot of time on relearning how to do things they used to be able to do in their sleep.
+Web browsers have seen a similar change in user interfaces, with configuration options being moved around or completely removed from the GUI, the menu bar being replaced by a button, and so on.
+GUIs are constantly in flux, and there are few established standards across programs.
+
+The command line, on the other hand, is fairly static.
+If you learned how to use it in 80s, you will still know your way around now, over 30 years later.
+Programs may sometimes add new bells and whistles to their command line interface, but the basics rarely change and are pretty much the same across all programs.
+
+So GUIs may be easier to pick up, but you have to constantly relearn old tricks.
+The command line you only learn once and then you're set for the rest of your life.
+
+### Not everything has a GUI
+
+You may sometimes find yourself in a situation where you don't have access to a GUI.
+For example, you might be trying to set up a Stony Brook Sparky server, install additional software for a course you're running in [Cocalc](https://cocalc.com), or configure a build server for your software development team.
+In those cases, there usually won't be any GUI available - either because nobody has created one, or the machine does not have the necessary software installed to display any kind of graphics, or because you are connecting remotely via [SSH](https://en.wikipedia.org/wiki/Secure_Shell).
+But in all these cases you will still have access to a command line interface, and it will work pretty much like the one in our virtual machine.
+
+### Easy instructions
+
+It is incredibly hard to give good instructions for how to use a GUI.
+Text descriptions are plain confusing ("click on File, further down there's an entry called Properties, click on that, go to the second tab, ...").
+Pictures and videos are a lot of work to make, and they can be misleading because GUIs don't look the same across operating systems and may change between versions of the program.
+Command line instructions are easy: "enter this, then that, and finally this".
+Even inexperienced users can reliably get the job done by copy-pasting commands from the instructions.
+
+
+Getting started
+---------------
+
+Now that you have a better understanding as to why you have to learn a bit about the command line, let's get started on the basics.
+I assume that you still have the terminal open in the VM.
+If not, open it by clicking on the Terminal icon on the desktop.
+
+You will now run your first real command.
+Type `whoami` and hit the Enter key.
+Right under the line you typed, you should now see the output `student`.
+This tells you that you are the user named *student*.
+
+![Output of whoami](./whoami.png)
+
+But actually you could have already know that by looking at the Terminal.
+Each line where you can type starts with `student@CompLingVM:~$`.
+This tells us four things:
+
+1. You are logged in as the user *student*.
+1. The computer you are using is called *CompLingVM*.
+1. The symbol `~` tells us that you are in the *home directory* of the current user.
+   The home directory contains all the user's files and documents, including user-specific settings for programs.
+1. You are not the root user, which has permanent and unlimited administrator privileges for the whole computer.
+   If you were, we would see a `#` instead of the `$`.
+
+The `whoami` command can still be useful, though, since you are not guaranteed that every computer is configured to display the user name on each line.
+
+Still, we obviously need some more productive commands than just inquiring about our username.
+For example, we might want to be able to see the files and folders that are in the home directory.
+But what could that command be?
+We can use the `apropos` command to find out.
+Type `apropos list` to see all the commands that mention *list* somewhere in their description.
+
+With most versions of the VM, this results in a single line output `list: nothing appropriate`.
+That is because we first have to create a database of command line descriptions for `apropos` (this database is not included in most versions of the VM to save space).
+Here is how we do that:
+
+1. We have to become the root user with `sudo su`.
+   This is a very useful command to remember.
+   Here `sudo` is short for "super user do", and `su` means that we want to become the root user (also called super user).
+
+1. When asked, enter the password.
+   It is *student*.
+
+1. Type `mandb` to create a database of *man*-files.
+   More on that later.
+
+1. Type `exit` to go back from the root user to the default user *student*.
+
+Alright, now let's try this again.
+Type `apropos list`.
+You should see a much longer list of commands now.
+You can use the scrollbar to move up and down the commands, or press Shift and the Page Up key on your keyboard.
+As you can see, this is a really long list, and it contains all kinds of things that we are not interested in.
+We want to list the contents of a directory.
+So we will narrow down our search:
+
+```bash
+apropos list | grep directory
+```
+
+Here we use the command `grep`, which takes an arbitrary text-based input and keeps only those lines that match the specified pattern.
+In our case, the pattern is just `directory`, but any pattern is okay that is a so-called *generalized regular expression* (hence the name `grep`).
+The output should be much shorter now.
+
+![Output of apropos list | grep directory](./list_commands.png)
+
+The first entry in the list is `chacl`, which has the description `change the access control list of a file or directory`.
+Whatever that may mean, it's clearly not what we want.
+Next we have `dir`, which apparently is used to `list directory contents`.
+Alright, let's try that one.
+Enter `dir`.
+
+![Output of dir](./dir.png)
+
+Alright, looks like we have found a way of seeing the contents of a directory.
+But there's a few other commands in the list.
+Out of those, `ls` and `vdir` have exactly the same description as `dir`, so we should try those, too.
+
+![Output of ls](./ls.png)
+![Output of vdir](./vdir.png)
+
+It seems that `ls` does the same as dir, but adds some color.
+On the other hand, `vdir` gives a completely different output, with all kinds of cryptic information to the left of the names.
+So we have three different commands for displaying the contents of a folder.
+What gives?
+
+It frequently happens that there are many command line programs for the same task that differ in some subtle ways.
+Whereas GUI programs tend to be large, command line programs usually are very small (between a few kilobyte and megabyte).
+Hence it isn't much of a problem to have multiple programs installed that are similar things.
+But this can be confusing to beginners, who do not know when to use which one.
+With increasing experience, you will get a better feeling for this, but for now just use the commands that are recommended in this tutorial.
