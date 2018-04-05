@@ -145,6 +145,9 @@ Here is how we do that:
 Alright, now let's try this again.
 Type `apropos list`.
 You should see a much longer list of commands now.
+
+![Output of apropos list](./list_all.png)
+
 You can use the scrollbar to move up and down the commands, or press Shift and the Page Up key on your keyboard.
 As you can see, this is a really long list, and it contains all kinds of things that we are not interested in.
 We want to list the contents of a directory.
@@ -158,7 +161,7 @@ Here we use the command `grep`, which takes an arbitrary text-based input and ke
 In our case, the pattern is just `directory`, but any pattern is okay that is a so-called *generalized regular expression* (hence the name `grep`).
 The output should be much shorter now.
 
-![Output of apropos list | grep directory](./list_commands.png)
+![Output of apropos list | grep directory](./list_grep.png)
 
 The first entry in the list is `chacl`, which has the description `change the access control list of a file or directory`.
 Whatever that may mean, it's clearly not what we want.
