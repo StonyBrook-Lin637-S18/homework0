@@ -1,10 +1,12 @@
-# Git: The Very Basics
+Git: The Very Basics
+====================
 
 This is a barebones introduction to the version control system `git`.
 It teaches you just enough to successfully do the homeworks for this course.
 It is assumed that you are using the virtual machine image and are already familiar with the very basics of the command line (`cd`, `mkdir`, and so on).
 
-## Git in 5 Minutes
+Git in 5 minutes
+----------------
 
 1. Open the Terminal.
    The icon is on the desktop.
@@ -19,10 +21,11 @@ It is assumed that you are using the virtual machine image and are already famil
 1. Finally, push the commit to the repository you cloned from with `git push origin master`.
 
 
-## Github in 5 Minutes
+Github in 5 minutes
+-------------------
 
 You can only push commits to a repository that you are allowed to write to.
-On Github, this is only the case for repositories that you have created yourself or that somebody has made given you write access to.
+On Github, this is only the case for repositories that you have created yourself or that somebody has given you write access to.
 You do **not** have write access to the homework repositories, so you cannot push your commits there.
 Instead, you have to
 

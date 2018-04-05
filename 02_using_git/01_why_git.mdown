@@ -43,7 +43,7 @@ But frankly, this is not a healthy attitude for academics, in particular not for
 In the long run, it is always smarter to invest the time to master a powerful tool that makes your life easier rather than muddling through with subpar tools that constantly require manual work on your part.
 
 
-Software Setup
+Software setup
 --------------
 
 For this tutorial, I assume that you have the following tools installed: git and gitk (or alternatively tig).
@@ -66,7 +66,7 @@ For other OSs, you can either google setup instructions or use the virtual machi
 1.  Download the [virtual machine image][vm] and import it into VirtualBox.
 
 
-Why Command-Line Tools
+Why command-line tools
 ----------------------
 
 There are many GUI tools for git, but we will mostly use the command line.
@@ -91,3 +91,5 @@ This has several advantages:
     GUI tools are monolithic blocks that do not integrate with anything else.
 
 1.  If you are in a text-only environment, for instance a remote server you are connected to via ssh, the command line is all you have.
+
+[vm]: https://drive.google.com/file/d/1ti5dhXh1ZzHKYa-dCHZtzI7WIapWPr2V/view?usp=sharing

@@ -8,6 +8,7 @@ The rest of this document covers the installation and general usage of the VM.
 Specialized topics such as the Linux command line are covered in separate units.
 
 For those of you who already know how a VM works, you can immediately [download and import the ova file][vm].
+If you want to install additional software, the admin password for the default `student` account is `student`.
 
 
 What is a VM?

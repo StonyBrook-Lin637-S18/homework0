@@ -1,0 +1,15 @@
+Additional Material
+===================
+
+We have only covered the tip of the iceberg.
+Git is a very powerful tool, and there are tons of tutorials that go from the very basics to some seriously advanced stuff.
+Here's a small selection:
+
+- [Try Git](https://try.github.io/levels/1/challenges/1)  
+  GitHub's interactive git intro
+
+- [Atlassian](https://www.atlassian.com/git/tutorials)  
+  Covers some very subtle points of git such as the difference between `merge` and `rebase`, as well as `reset` versus `checkout` versus `revert`
+
+- [Git Documentation](https://git-scm.com/documentation)  
+  The official git documentation covers everything there is to know, and also lists various GUI tools and helper utilities.

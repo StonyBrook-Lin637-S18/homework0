@@ -1,7 +1,7 @@
 Git Basics
 ==========
 
-## Initializing a Git Repository
+## Initializing a git repository
 
 Git's workflow revolves around repositories.
 A repository is just a folder that also contains some hidden files and folders created by git.
@@ -17,7 +17,7 @@ This is very easy to do:
 You now have a fully functional git repository.
 
 
-## Cloning a Git Repository
+## Cloning a git repository
 
 One of git's main advantages is that it allows you to reuse repositories created by other people.
 This is called *cloning*.
@@ -55,7 +55,7 @@ Let us try to clone this very repository to your own computer so that you can ad
     A folder that is a git repository is no different from any other folder as far as your OS is concerned.
 
 
-## Basic Git Workflow
+## Basic git workflow
 
 You now have a working git repository on your computer. 
 It does not matter whether you created it yourself from scratch with `git init` or cloned an existing one with `git clone`, how a repository is created does not affect its functionality.
@@ -145,7 +145,7 @@ The `.` is a common convention for including all possible matches.
 See [this blog post](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message) for details.
 
 
-## Ignoring Certain Files
+## Ignoring certain files
 
 The `git add .` command provides an easy means of staging all changed files.
 But sometimes you do not want to add all files.
